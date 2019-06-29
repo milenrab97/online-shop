@@ -10,10 +10,8 @@
     "redux": "^4.0.1"
   },
   "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1",
-    "react-bootstrap": "^1.0.0-beta.6",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
     "eslint": "5.16.0",
     "eslint-config-prettier": "4.1.0",
     "eslint-config-standard": "12.0.0",
@@ -23,10 +21,13 @@
     "eslint-plugin-jest": "22.1.3",
     "eslint-plugin-prettier": "3.0.1",
     "eslint-plugin-react": "7.12.4",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "redux-saga": "^1.0.2",
-    "axios": "^0.18.0"
+    "react-scripts": "3.0.1",
+    "redux-saga": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
