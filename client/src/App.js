@@ -1,9 +1,19 @@
 import React from 'react'
 import './App.css'
-import Home from './components/Home'
+import { BrowserRouter } from 'react-router-dom'
+import Shop from './components/Shop'
+import NavBar from './components/NavBar'
 
 function App() {
-    return <Home />
+    return (
+        <BrowserRouter>
+            <div className="app">
+                <NavBar />
+
+                <Shop />
+            </div>
+        </BrowserRouter>
+    )
 }
 
 export default App
