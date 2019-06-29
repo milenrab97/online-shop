@@ -5,11 +5,11 @@ export default class NavBar extends Component {
     render() {
         return (
             <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="#home">Online-Shop</Navbar.Brand>
+                <Navbar.Brand href="/">Online-Shop</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#home">Products</Nav.Link>
+                        <Nav.Link href="productlisting">Products</Nav.Link>
                         <Nav.Link href="#link">LOKO SOFIQ</Nav.Link>
                     </Nav>
                     <Form inline>
