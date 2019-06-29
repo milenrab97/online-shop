@@ -15,6 +15,9 @@ export default class NavBar extends Component {
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                         <Button variant="outline-success">Search</Button>
+                        <Button variant="danger" style={{ marginLeft: '10px' }}>
+                            Logout
+                        </Button>
                     </Form>
                 </Navbar.Collapse>
             </Navbar>

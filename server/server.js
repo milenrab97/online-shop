@@ -1,7 +1,7 @@
 require('./db')
 const express = require('express')
 const userController = require('./controllers/users.controller')
-// const authController = require('./controllers/auth.controller')
+const authController = require('./controllers/auth.controller')
 const bodyparser = require('body-parser')
 const cors = require('cors')
 
@@ -21,4 +21,4 @@ app.listen(5000, () => {
 })
 
 app.use('/api/users', userController)
-// app.use('/auth/', authController)
+app.use('/auth/', authController)
