@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Form, Button, FormControl, Navbar, Nav } from 'react-bootstrap'
 
 export default class NavBar extends Component {
@@ -9,7 +10,8 @@ export default class NavBar extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#home">Products</Nav.Link>
+                        <Link to="/login">Login</Link>
+                        <Link to="/productlisting">Products</Link>
                         <Nav.Link href="#link">LOKO SOFIQ</Nav.Link>
                     </Nav>
                     <Form inline>
