@@ -1,0 +1,40 @@
+module.exports = {
+    extends: ['standard', 'standard-react', 'prettier', 'prettier/standard', 'prettier/react'],
+    parser: 'babel-eslint',
+    plugins: ['jest', 'prettier'],
+    settings: {
+        'import/resolver': 'webpack',
+    },
+    rules: {
+        indent: 'off',
+        'import/no-extraneous-dependencies': ['error'],
+        'import/order': [
+            'error',
+            {
+                groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+            },
+        ],
+        'jsx-quotes': 'off',
+        'linebreak-style': ['error', 'unix'],
+        'lines-between-class-members': ['error', 'always'],
+        'max-len': 'off',
+        'no-alert': 'error',
+        'no-console': 'error',
+        'no-lone-blocks': 'off',
+        'padding-line-between-statements': [
+            'error',
+            { blankLine: 'always', prev: '*', next: 'return' },
+            { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+            { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
+        ],
+        'quote-props': ['error', 'as-needed', { keywords: false, unnecessary: false }],
+        'object-shorthand': 'error',
+        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+        'react/jsx-indent': 'off',
+        'react/jsx-indent-props': 'off',
+        'react/no-unused-prop-types': 'error',
+        'react/sort-comp': 'off',
+        'react/jsx-no-bind': 'off',
+        'prettier/prettier': ['error'],
+    },
+}
