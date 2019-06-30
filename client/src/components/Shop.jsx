@@ -4,7 +4,7 @@ import Home from './Home'
 import Login from './Login'
 import ProductListing from './ProductListing'
 import ProductDetails from './ProductDetails'
-import AddProduct from './AddProduct';
+import AddProduct from './AddProduct'
 
 export default class Shop extends Component {
     render() {
