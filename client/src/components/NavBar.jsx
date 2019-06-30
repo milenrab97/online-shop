@@ -12,6 +12,7 @@ export default class NavBar extends Component {
                     <Nav className="mr-auto">
                         <Link to="/login">Login</Link>
                         <Link to="/productlisting">Products</Link>
+                        <Link to="/add-product">Add Product</Link>
                         <Nav.Link href="#link">LOKO SOFIQ</Nav.Link>
                     </Nav>
                     <Form inline>
