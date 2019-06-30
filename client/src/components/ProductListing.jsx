@@ -1,39 +1,47 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Button, Card, Container, Row, Col } from 'react-bootstrap'
+import { productsSelector } from '../reducers/products'
+import { fetchProductsAction } from './../actions/products'
 
-export default class ProductListing extends Component {
+export class ProductListing extends Component {
+    componentDidMount() {
+        this.props.fetchProducts()
+    }
+
     render() {
+        const { products } = this.props
+        const normalizedProducts = products.map(product => ({
+            ...product,
+            photo: `http://localhost:5000/${product.photo.split('\\').join('/')}`,
+        }))
+
         return (
             <Container>
                 <Row>
-                    <Col sm={8}>
+                    {/* <Col sm={8}> */}
+                    {normalizedProducts.map(product => (
                         <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src="holder.js/100px180" />
+                            <Card.Img variant="top" src={`${product.photo}`} />
                             <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.
-                                </Card.Text>
+                                <Card.Title>{product.title}</Card.Title>
+                                <Card.Text>{product.shortDescription}</Card.Text>
                                 <Button variant="primary">ADD TO CART</Button>
                             </Card.Body>
                         </Card>
-                    </Col>
-                    <Col sm={4}>
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src="holder.js/100px180" />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.
-                                </Card.Text>
-                                <Button variant="primary">ADD TO CART</Button>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                    ))}
+                    {/* </Col> */}
                 </Row>
             </Container>
         )
     }
 }
+
+export default connect(
+    state => ({
+        products: productsSelector(state),
+    }),
+    {
+        fetchProducts: fetchProductsAction,
+    }
+)(ProductListing)

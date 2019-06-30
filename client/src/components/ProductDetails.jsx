@@ -1,7 +1,14 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import { Col, Row, Container, Image, Card, Button } from 'react-bootstrap'
+import { fetchProductsAction } from './../actions/products'
 
-export default class ProductDetails extends Component {
+export class ProductDetails extends PureComponent {
+    componentDidMount() {
+        // eslint-disable-next-line react/prop-types
+        this.props.fetchProducts()
+    }
+
     render() {
         return (
             <Container>
@@ -33,3 +40,12 @@ export default class ProductDetails extends Component {
         )
     }
 }
+
+export default connect(
+    state => ({
+        token: 'token',
+    }),
+    {
+        fetchProducts: fetchProductsAction,
+    }
+)(ProductDetails)
