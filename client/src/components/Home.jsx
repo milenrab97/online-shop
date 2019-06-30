@@ -1,8 +1,27 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { productsSelector } from '../reducers/products'
 import Carousel from './CarouselComp'
+import { fetchProductsAction } from './../actions/products'
 
-export default class Home extends Component {
+export class Home extends Component {
+    componentDidMount() {
+        this.props.fetchProducts()
+    }
+
     render() {
-        return <Carousel />
+        const { products } = this.props
+
+        return <Carousel {...{ products: products.slice(0, 3) }} />
     }
 }
+
+export default connect(
+    state => ({
+        products: productsSelector(state),
+    }),
+    {
+        fetchProducts: fetchProductsAction,
+    }
+)(Home)

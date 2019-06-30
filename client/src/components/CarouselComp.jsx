@@ -1,30 +1,38 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { Carousel } from 'react-bootstrap'
 
 export default class CarouselComp extends Component {
-    renderingCarousel = () => {
-        let test = [
-            'https://f4.bcbits.com/img/a2985427437_16.jpg',
-            'http://hiphopsince1987.com/wp-content/uploads/2015/08/kur-see-thru-HHS1987-2015.jpg',
-        ]
-
-        return test.map(image => {
-            return (
-                <Carousel.Item>
-                    <img className="d-block w-100" src={image} alt="First slide" />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            )
-        })
-    }
-
     render() {
+        const { products } = this.props
+        const normalizedProducts = products.map(product => ({
+            ...product,
+            photo: `http://localhost:5000/${product.photo.split('\\').join('/')}`,
+        }))
+
         return (
-            <div>
-                <Carousel>{this.renderingCarousel()}</Carousel>
+            <div
+                style={{
+                    height: '500px',
+                    textAlign: 'center',
+                    verticalAlign: 'center',
+                    borderBottom: '3px solid grey',
+                    borderTop: '3px solid grey',
+                }}
+            >
+                <Carousel fade wrap interval={1800}>
+                    {normalizedProducts.map(({ _id, title, photo, shortDescription, category }) => (
+                        <Carousel.Item key={_id}>
+                            <img src={photo} alt={title} style={{ maxHeight: '500px', width: '100%' }} />
+                            <Carousel.Caption>
+                                <div>
+                                    <h3>{category}</h3>
+                                    <p>{shortDescription}</p>
+                                </div>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    ))}
+                </Carousel>
             </div>
         )
     }
