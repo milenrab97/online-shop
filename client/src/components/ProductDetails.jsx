@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Col, Row, Container, Image, Card, Button } from 'react-bootstrap'
+import Comments from './Comments'
 import { fetchProductsAction } from './../actions/products'
 
 export class ProductDetails extends PureComponent {
@@ -34,6 +35,11 @@ export class ProductDetails extends PureComponent {
                                 </Button>
                             </Card.Footer>
                         </Card>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={12}>
+                        <Comments />
                     </Col>
                 </Row>
             </Container>
