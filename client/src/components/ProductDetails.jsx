@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Col, Row, Container, Image, Card, Button } from 'react-bootstrap'
+import Comments from './Comments'
 
 export default class ProductDetails extends Component {
     render() {
@@ -27,6 +28,11 @@ export default class ProductDetails extends Component {
                                 </Button>
                             </Card.Footer>
                         </Card>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={12}>
+                        <Comments />
                     </Col>
                 </Row>
             </Container>
