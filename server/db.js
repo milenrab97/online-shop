@@ -14,3 +14,4 @@ mongoose.connect(
     }
 )
 require('./user.model')
+require('./product.model')
