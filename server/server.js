@@ -3,6 +3,7 @@ const express = require('express')
 const userController = require('./controllers/users.controller')
 const productController = require('./controllers/product.controller')
 const authController = require('./controllers/auth.controller')
+const commentController = require('./controllers/comment.controller')
 const bodyparser = require('body-parser')
 const cors = require('cors')
 
@@ -25,4 +26,5 @@ app.listen(5000, () => {
 
 app.use('/api/users', userController)
 app.use('/api/products', productController)
+app.use('/api/products', commentController)
 app.use('/auth/', authController)

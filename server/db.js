@@ -15,3 +15,4 @@ mongoose.connect(
 )
 require('./user.model')
 require('./product.model')
+require('./models/comment.model')
