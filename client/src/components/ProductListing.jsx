@@ -22,7 +22,11 @@ export class ProductListing extends Component {
                     {/* <Col sm={8}> */}
                     {normalizedProducts.map(product => (
                         <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={`${product.photo}`} />
+                            <Card.Img
+                                style={{ position: 'relative', width: '288px', height: '180px', padding: '5px' }}
+                                variant="top"
+                                src={`${product.photo}`}
+                            />
                             <Card.Body>
                                 <Card.Title>{product.title}</Card.Title>
                                 <Card.Text>{product.shortDescription}</Card.Text>
