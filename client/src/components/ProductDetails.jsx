@@ -1,36 +1,45 @@
+/* eslint-disable react/prop-types */
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Col, Row, Container, Image, Card, Button } from 'react-bootstrap'
+import { productSelector } from '../reducers/products'
 import Comments from './Comments'
-import { fetchProductsAction } from './../actions/products'
+import { fetchProductDetailsAction } from './../actions/products'
 
 export class ProductDetails extends PureComponent {
     componentDidMount() {
-        // eslint-disable-next-line react/prop-types
-        this.props.fetchProducts()
+        const {
+            fetchProductDetails,
+            match: {
+                params: { id },
+            },
+        } = this.props
+
+        fetchProductDetails({ productId: id })
+        // const a = this.props.match.params.id
     }
 
     render() {
+        const { product } = this.props
+
+        product.photo = product.photo && `http://localhost:5000/${product.photo.split('\\').join('/')}`
+
         return (
-            <Container style={{ 'padding-top': '2rem' }}>
+            <Container style={{ paddingTop: '2rem' }}>
                 <Row>
                     <Col>
-                        <Image
-                            style={{ height: '100%' }}
-                            src="https://cdn-images-1.medium.com/max/711/1*jhD-rWxuFvo17Q1Mw6LuEw.jpeg"
-                            fluid
-                        />
+                        <Image style={{ height: '100%' }} src={product.photo} fluid />
                     </Col>
                     <Col xs={6}>
                         <Card style={{ width: '100%', height: '100%' }}>
                             <Card.Header>
-                                <Card.Title>Name of the product</Card.Title>
+                                <Card.Title>{product.title}</Card.Title>
                             </Card.Header>
                             <Card.Body>
-                                <Card.Text>Description of the Product</Card.Text>
+                                <Card.Text>{product.description}</Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <Card.Text>Price : 1000 lea</Card.Text>
+                                <Card.Text>Price : {product.price} lv</Card.Text>
                                 <Button variant="primary" block>
                                     Add to Cart
                                 </Button>
@@ -38,7 +47,7 @@ export class ProductDetails extends PureComponent {
                         </Card>
                     </Col>
                 </Row>
-                <Row style={{ 'padding-top': '2rem' }}>
+                <Row style={{ padding: '2rem' }}>
                     <Col xs={6}>
                         <Comments />
                     </Col>
@@ -50,9 +59,9 @@ export class ProductDetails extends PureComponent {
 
 export default connect(
     state => ({
-        token: 'token',
+        product: productSelector(state),
     }),
     {
-        fetchProducts: fetchProductsAction,
+        fetchProductDetails: fetchProductDetailsAction,
     }
 )(ProductDetails)

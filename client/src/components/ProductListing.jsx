@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Button, Card, Container, Row, Col } from 'react-bootstrap'
+import { Button, Card, Container, Row } from 'react-bootstrap'
 import { productsSelector } from '../reducers/products'
 import { fetchProductsAction } from './../actions/products'
 
@@ -21,11 +22,18 @@ export class ProductListing extends Component {
                 <Row>
                     {/* <Col sm={8}> */}
                     {normalizedProducts.map(product => (
-                        <Card style={{ width: '18rem' }}>
+                        <Card style={{ width: '18rem' }} key={product._id}>
                             <Card.Img
-                                style={{ position: 'relative', width: '288px', height: '180px', padding: '5px' }}
+                                style={{
+                                    position: 'relative',
+                                    width: '288px',
+                                    height: '180px',
+                                    padding: '5px',
+                                    cursor: 'pointer',
+                                }}
                                 variant="top"
                                 src={`${product.photo}`}
+                                onClick={() => this.props.history.push(`/product-details/${product._id}`)}
                             />
                             <Card.Body>
                                 <Card.Title>{product.title}</Card.Title>
