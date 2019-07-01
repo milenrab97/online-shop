@@ -17,11 +17,11 @@ router.get('/:productId/comments', (req, res) => {
 router.post('/:productId/comments', (req, res) => {
     const { description } = req.body
     const token = req.headers.authorization
-    const decoded = jwtDecode(token)
+    const decoded = token && jwtDecode(token)
 
     const comment = new Comment({
         description,
-        author: decoded.name || 'Anonymous',
+        author: (decoded && decoded.name) || 'Anonymous',
         time: new Date(),
         productId: req.params.productId,
     })
