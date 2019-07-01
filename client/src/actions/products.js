@@ -1,4 +1,10 @@
-import { FETCH_PRODUCTS, RECEIVE_PRODUCTS, FETCH_PRODUCT_DETAILS, SET_PRODUCT_DETAILS } from '../constants/products'
+import {
+    FETCH_PRODUCTS,
+    RECEIVE_PRODUCTS,
+    FETCH_PRODUCT_DETAILS,
+    SET_PRODUCT_DETAILS,
+    SET_COMMENTS,
+} from '../constants/products'
 
 export const fetchProductsAction = () => ({
     type: FETCH_PRODUCTS,
@@ -18,4 +24,9 @@ export const fetchProductDetailsAction = ({ productId }) => ({
 export const setProductDetailsAction = ({ product }) => ({
     type: SET_PRODUCT_DETAILS,
     payload: { product },
+})
+
+export const setCommentsAction = ({ comments }) => ({
+    type: SET_COMMENTS,
+    payload: { comments },
 })

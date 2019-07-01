@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Col, Row, Container, Image, Card, Button } from 'react-bootstrap'
-import { productSelector } from '../reducers/products'
+import { productSelector, commentsSelector } from '../reducers/products'
 import Comments from './Comments'
 import { fetchProductDetailsAction } from './../actions/products'
 
@@ -16,19 +16,18 @@ export class ProductDetails extends PureComponent {
         } = this.props
 
         fetchProductDetails({ productId: id })
-        // const a = this.props.match.params.id
     }
 
     render() {
-        const { product } = this.props
+        const { product, comments } = this.props
 
-        product.photo = product.photo && `http://localhost:5000/${product.photo.split('\\').join('/')}`
+        const photo = product.photo ? `http://localhost:5000/${product.photo.split('\\').join('/')}` : null
 
         return (
             <Container style={{ paddingTop: '2rem' }}>
                 <Row>
                     <Col>
-                        <Image style={{ height: '100%' }} src={product.photo} fluid />
+                        <Image style={{ height: '100%' }} src={photo} fluid />
                     </Col>
                     <Col xs={6}>
                         <Card style={{ width: '100%', height: '100%' }}>
@@ -49,7 +48,7 @@ export class ProductDetails extends PureComponent {
                 </Row>
                 <Row style={{ padding: '2rem' }}>
                     <Col xs={6}>
-                        <Comments />
+                        <Comments comments={comments} />
                     </Col>
                 </Row>
             </Container>
@@ -60,6 +59,7 @@ export class ProductDetails extends PureComponent {
 export default connect(
     state => ({
         product: productSelector(state),
+        comments: commentsSelector(state),
     }),
     {
         fetchProductDetails: fetchProductDetailsAction,
