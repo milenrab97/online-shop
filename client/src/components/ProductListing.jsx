@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Button, Card, Container, Row, Col } from 'react-bootstrap'
+import { Button, Card, Container, Row } from 'react-bootstrap'
 import { productsSelector } from '../reducers/products'
 import { fetchProductsAction } from './../actions/products'
 
@@ -17,9 +18,10 @@ export class ProductListing extends Component {
         }))
 
         return (
-            <Container>
+            <Container style={{ padding: '5px' }}>
                 <Row>
                     {/* <Col sm={8}> */}
+
                     {normalizedProducts.map(product => (
                         <Card style={{ width: '18rem' }}>
                             <Card.Img
@@ -30,7 +32,9 @@ export class ProductListing extends Component {
                             <Card.Body>
                                 <Card.Title>{product.title}</Card.Title>
                                 <Card.Text>{product.shortDescription}</Card.Text>
-                                <Button variant="primary">ADD TO CART</Button>
+                                <Button variant="primary" block>
+                                    ADD TO CART
+                                </Button>
                             </Card.Body>
                         </Card>
                     ))}
