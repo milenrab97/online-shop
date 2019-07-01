@@ -36,6 +36,7 @@ router.post('/login', function(req, res) {
                         {
                             id: user._id,
                             role: user.role,
+                            name: user.name,
                         },
                         secret,
                         {
