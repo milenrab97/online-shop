@@ -16,12 +16,13 @@ export class ProductDetails extends PureComponent {
                 <Row>
                     <Col>
                         <Image
-                            src="http://hiphopsince1987.com/wp-content/uploads/2015/08/kur-see-thru-HHS1987-2015.jpg"
+                            style={{ height: '100%' }}
+                            src="https://cdn-images-1.medium.com/max/711/1*jhD-rWxuFvo17Q1Mw6LuEw.jpeg"
                             fluid
                         />
                     </Col>
                     <Col xs={6}>
-                        <Card style={{ width: '30rem', height: '28rem' }}>
+                        <Card style={{ width: '100%', height: '100%' }}>
                             <Card.Header>
                                 <Card.Title>Name of the product</Card.Title>
                             </Card.Header>
@@ -37,8 +38,8 @@ export class ProductDetails extends PureComponent {
                         </Card>
                     </Col>
                 </Row>
-                <Row>
-                    <Col xs={12}>
+                <Row style={{ 'padding-top': '2rem' }}>
+                    <Col xs={6}>
                         <Comments />
                     </Col>
                 </Row>

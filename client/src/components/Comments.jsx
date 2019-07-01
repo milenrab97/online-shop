@@ -17,7 +17,11 @@ export default class Comments extends Component {
         ]
 
         return test.map(comment => {
-            return <CommentDetails author={comment.author} description={comment.description} time={comment.time} />
+            return (
+                <div>
+                    <CommentDetails author={comment.author} description={comment.description} time={comment.time} />
+                </div>
+            )
         })
     }
 
