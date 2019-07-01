@@ -13,6 +13,7 @@ mongoose.connect(
         }
     }
 )
-require('./user.model')
-require('./product.model')
+require('./models/user.model')
+require('./models/product.model')
 require('./models/comment.model')
+require('./models/cart.model')
