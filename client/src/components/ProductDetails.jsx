@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Col, Row, Container, Image, Card, Button } from 'react-bootstrap'
 import { productSelector, commentsSelector } from '../reducers/products'
 import Comments from './Comments'
-import { fetchProductDetailsAction } from './../actions/products'
+import { fetchProductDetailsAction, submitCommentAction } from './../actions/products'
 
 export class ProductDetails extends PureComponent {
     componentDidMount() {
@@ -19,7 +19,7 @@ export class ProductDetails extends PureComponent {
     }
 
     render() {
-        const { product, comments } = this.props
+        const { product, comments, submitComment } = this.props
 
         const photo = product.photo ? `http://localhost:5000/${product.photo.split('\\').join('/')}` : null
 
@@ -52,7 +52,7 @@ export class ProductDetails extends PureComponent {
                 </Row>
                 <Row style={{ padding: '2rem' }}>
                     <Col xs={6}>
-                        <Comments comments={comments} />
+                        <Comments productId={product._id} comments={comments} submitComment={submitComment} />
                     </Col>
                 </Row>
             </Container>
@@ -67,5 +67,6 @@ export default connect(
     }),
     {
         fetchProductDetails: fetchProductDetailsAction,
+        submitComment: submitCommentAction,
     }
 )(ProductDetails)

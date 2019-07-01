@@ -4,6 +4,7 @@ import {
     FETCH_PRODUCT_DETAILS,
     SET_PRODUCT_DETAILS,
     SET_COMMENTS,
+    SUBMIT_COMMENT,
 } from '../constants/products'
 
 export const fetchProductsAction = () => ({
@@ -29,4 +30,9 @@ export const setProductDetailsAction = ({ product }) => ({
 export const setCommentsAction = ({ comments }) => ({
     type: SET_COMMENTS,
     payload: { comments },
+})
+
+export const submitCommentAction = ({ description, productId }) => ({
+    type: SUBMIT_COMMENT,
+    payload: { description, productId },
 })

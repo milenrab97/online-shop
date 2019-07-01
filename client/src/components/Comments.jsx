@@ -4,8 +4,23 @@ import { Form, Button } from 'react-bootstrap'
 import CommentDetails from './CommentDetails'
 
 export default class Comments extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            description: '',
+        }
+    }
+
+    handleCommentChange = event => {
+        this.setState({
+            description: event.target.value,
+        })
+    }
+
     render() {
-        const { comments } = this.props
+        const { comments, productId, submitComment } = this.props
+        const { description } = this.state
 
         return (
             <div>
@@ -25,9 +40,15 @@ export default class Comments extends Component {
                 <div>
                     <Form style={{ width: '70rem', padding: '5px' }}>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Control type="text" placeholder="Enter Comment" />
+                            <Form.Control type="text" placeholder="Enter Comment" onChange={this.handleCommentChange} />
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button
+                            variant="primary"
+                            onClick={e => {
+                                e.preventDefault()
+                                submitComment({ productId, description })
+                            }}
+                        >
                             Submit Comment
                         </Button>
                     </Form>
