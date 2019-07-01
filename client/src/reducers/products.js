@@ -1,8 +1,9 @@
-import { RECEIVE_PRODUCTS, SET_PRODUCT_DETAILS } from '../constants/products'
+import { RECEIVE_PRODUCTS, SET_PRODUCT_DETAILS, SET_COMMENTS } from '../constants/products'
 
 const initialState = {
     products: [],
     product: {},
+    comments: [],
 }
 
 export const productsReducer = (state = initialState, action) => {
@@ -17,6 +18,11 @@ export const productsReducer = (state = initialState, action) => {
                 ...state,
                 product: action.payload.product,
             }
+        case SET_COMMENTS:
+            return {
+                ...state,
+                comments: action.payload.comments,
+            }
         default:
             return state
     }
@@ -25,5 +31,7 @@ export const productsReducer = (state = initialState, action) => {
 export const productsSelector = state => state.products.products
 
 export const productSelector = state => state.products.product
+
+export const commentsSelector = state => state.products.comments
 
 export default productsReducer

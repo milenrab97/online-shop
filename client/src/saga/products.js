@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { call, takeLatest, all, put } from 'redux-saga/effects'
 import { FETCH_PRODUCTS, FETCH_PRODUCT_DETAILS } from '../constants/products'
-import { receiveProductsAction, setProductDetailsAction } from '../actions/products'
+import { receiveProductsAction, setProductDetailsAction, setCommentsAction } from '../actions/products'
 import http from './../services/request'
 
 export const fetchProductsAsync = () => {
@@ -22,6 +22,10 @@ export function* fetchProductsWatcher() {
     yield takeLatest(FETCH_PRODUCTS, fetchProductsWorker)
 }
 
+export const fetchProductCommentsAsync = productId => {
+    return http.get(`/api/products/${productId}/comments`)
+}
+
 export const fetchProductDetailsAsync = productId => {
     return http.get(`/api/products/${productId}`)
 }
@@ -29,9 +33,12 @@ export const fetchProductDetailsAsync = productId => {
 export function* fetchProductDetailsWorker(action) {
     try {
         const { productId } = action.payload
+
         const { data } = yield call(fetchProductDetailsAsync, productId)
+        const { data: comments } = yield call(fetchProductCommentsAsync, productId)
 
         yield put(setProductDetailsAction({ product: data }))
+        yield put(setCommentsAction({ comments }))
     } catch (e) {
         console.log(e)
     }
