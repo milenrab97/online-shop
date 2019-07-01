@@ -13,9 +13,10 @@ export default class NavBar extends Component {
                         <Link to="/login">Login</Link>
                         <Link to="/productlisting">Products</Link>
                         <Link to="/add-product">Add Product</Link>
-                        <Nav.Link href="#link">LOKO SOFIQ</Nav.Link>
                     </Nav>
+
                     <Form inline>
+                        <Link to="/Cart">Cart</Link>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                         <Button variant="outline-success">Search</Button>
                         <Button variant="danger" style={{ marginLeft: '10px' }}>

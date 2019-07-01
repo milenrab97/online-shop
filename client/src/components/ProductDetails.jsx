@@ -27,7 +27,11 @@ export class ProductDetails extends PureComponent {
             <Container style={{ paddingTop: '2rem' }}>
                 <Row>
                     <Col>
-                        <Image style={{ height: '100%' }} src={photo} fluid />
+                        <Image
+                            style={{ position: 'relative', paddingLeft: '50px', width: '100rem', height: '230px' }}
+                            src={photo}
+                            fluid
+                        />
                     </Col>
                     <Col xs={6}>
                         <Card style={{ width: '100%', height: '100%' }}>

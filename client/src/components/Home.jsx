@@ -14,7 +14,7 @@ export class Home extends Component {
         const { products } = this.props
 
         return (
-            <div style={{ height: '50%', width: '70%', paddingTop: '50px' }}>
+            <div style={{ height: '50%', width: '70%', paddingLeft: '30%', paddingTop: '50px' }}>
                 <Carousel {...{ products: products.slice(0, 3) }} />
             </div>
         )
