@@ -23,7 +23,11 @@ export default class CarouselComp extends Component {
                 <Carousel fade wrap interval={1800}>
                     {normalizedProducts.map(({ _id, title, photo, shortDescription, category }) => (
                         <Carousel.Item key={_id}>
-                            <img src={photo} alt={title} style={{ maxHeight: '500px', width: '100%' }} />
+                            <img
+                                src={photo}
+                                alt={title}
+                                style={{ position: 'relative ', width: '520px', height: '350px' }}
+                            />
                             <Carousel.Caption>
                                 <div>
                                     <h3>{category}</h3>
