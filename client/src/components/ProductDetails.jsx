@@ -12,7 +12,7 @@ export class ProductDetails extends PureComponent {
 
     render() {
         return (
-            <Container>
+            <Container style={{ 'padding-top': '2rem' }}>
                 <Row>
                     <Col>
                         <Image

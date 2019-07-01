@@ -13,7 +13,11 @@ export class Home extends Component {
     render() {
         const { products } = this.props
 
-        return <Carousel {...{ products: products.slice(0, 3) }} />
+        return (
+            <div style={{ height: '50%', width: '70%', 'padding-left': '30%', 'padding-top': '50px' }}>
+                <Carousel {...{ products: products.slice(0, 3) }} />
+            </div>
+        )
     }
 }
 
