@@ -49,9 +49,11 @@ export default class NavBar extends Component {
                             placeholder="Enter category"
                             onChange={this.handleInputChange('search')}
                         />
-                        <Button variant="outline-success" onClick={this.getKeyword}>
-                            <Link to={'/searchlisting/' + this.state.keyWord}>Search</Link>
-                        </Button>
+                        <Link to={'/searchlisting/' + this.state.keyWord}>
+                            <Button variant="outline-success" onClick={this.getKeyword}>
+                                Search
+                            </Button>
+                        </Link>
                         <Button variant="danger" style={{ marginLeft: '10px' }}>
                             Logout
                         </Button>
