@@ -42,9 +42,16 @@ export class NavBar extends Component {
                         <Navbar.Text>
                             <Link to="/productlisting">Products</Link>
                         </Navbar.Text>
-                        <Navbar.Text>
-                            <Link to="/add-product">Add Product</Link>
-                        </Navbar.Text>
+                        {userRole === 'admin' && (
+                            <>
+                                <Navbar.Text>
+                                    <Link to="/add-product">Add Product</Link>
+                                </Navbar.Text>
+                                <Navbar.Text>
+                                    <Link to="/orders">Orders</Link>
+                                </Navbar.Text>
+                            </>
+                        )}
                     </Nav>
 
                     <Form inline>
