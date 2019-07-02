@@ -6,6 +6,7 @@ import ProductListing from './ProductListing'
 import ProductDetails from './ProductDetails'
 import AddProduct from './AddProduct'
 import Cart from './Cart'
+import SearchListing from './SearchListing'
 
 export default class Shop extends Component {
     render() {
@@ -15,6 +16,7 @@ export default class Shop extends Component {
                 <Route path="/" exact component={Home} />
                 <Route path="/product-details/:id" component={ProductDetails} />
                 <Route path="/login" exact component={Login} />
+                <Route path="/searchlisting/:id" exact component={SearchListing} />
                 <Route path="/productlisting" component={ProductListing} />
                 <Route path="/add-product" component={AddProduct} />
                 <Route path="/cart" component={Cart} />

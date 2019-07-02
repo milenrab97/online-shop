@@ -3,9 +3,9 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Col, Row, Container, Image, Card, Button } from 'react-bootstrap'
 import { productSelector, commentsSelector } from '../reducers/products'
+import { addToCartAction } from '../actions/cart'
 import Comments from './Comments'
 import { fetchProductDetailsAction, submitCommentAction } from './../actions/products'
-import { addToCartAction } from '../actions/cart'
 
 export class ProductDetails extends PureComponent {
     componentDidMount() {
