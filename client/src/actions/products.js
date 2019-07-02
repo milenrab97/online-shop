@@ -5,6 +5,7 @@ import {
     SET_PRODUCT_DETAILS,
     SET_COMMENTS,
     SUBMIT_COMMENT,
+    RESET_CURRENT_PRODUCT,
 } from '../constants/products'
 
 export const fetchProductsAction = () => ({
@@ -35,4 +36,9 @@ export const setCommentsAction = ({ comments }) => ({
 export const submitCommentAction = ({ description, productId }) => ({
     type: SUBMIT_COMMENT,
     payload: { description, productId },
+})
+
+export const resetCurrentProductAction = () => ({
+    type: RESET_CURRENT_PRODUCT,
+    payload: {},
 })

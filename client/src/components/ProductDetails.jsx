@@ -3,19 +3,21 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Col, Row, Container, Image, Card, Button } from 'react-bootstrap'
 import { productSelector, commentsSelector } from '../reducers/products'
-import Comments from './Comments'
-import { fetchProductDetailsAction, submitCommentAction } from './../actions/products'
 import { addToCartAction } from '../actions/cart'
+import Comments from './Comments'
+import { fetchProductDetailsAction, submitCommentAction, resetCurrentProductAction } from './../actions/products'
 
 export class ProductDetails extends PureComponent {
     componentDidMount() {
         const {
+            resetCurrentProduct,
             fetchProductDetails,
             match: {
                 params: { id },
             },
         } = this.props
 
+        resetCurrentProduct()
         fetchProductDetails({ productId: id })
     }
 
@@ -70,5 +72,6 @@ export default connect(
         fetchProductDetails: fetchProductDetailsAction,
         submitComment: submitCommentAction,
         addToCart: addToCartAction,
+        resetCurrentProduct: resetCurrentProductAction,
     }
 )(ProductDetails)
