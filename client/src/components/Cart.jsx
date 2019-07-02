@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container, Row, Col, Button, Card } from 'react-bootstrap'
 import { cartSelector } from '../reducers/cart'
-import { fetchCartAction } from '../actions/cart'
+import { fetchCartAction, deleteProductFromCartAction } from '../actions/cart'
 
 export class Cart extends Component {
     constructor(props) {
@@ -19,8 +19,7 @@ export class Cart extends Component {
     }
 
     render() {
-        const { cart } = this.props
-        console.log('cart', cart)
+        const { cart, deleteProductFromCart } = this.props
 
         return (
             <div>
@@ -33,6 +32,12 @@ export class Cart extends Component {
                                         <Card style={{ width: '20rem' }} block>
                                             <Card.Header> Title : {product.title}</Card.Header>
                                             <Card.Text>Price : {product.price}</Card.Text>
+                                            <p
+                                                style={{ color: 'red' }}
+                                                onClick={() => deleteProductFromCart({ productId: product._id })}
+                                            >
+                                                x
+                                            </p>
                                         </Card>
                                     )
                                 })}
@@ -54,5 +59,6 @@ export default connect(
     }),
     {
         fetchCart: fetchCartAction,
+        deleteProductFromCart: deleteProductFromCartAction,
     }
 )(Cart)

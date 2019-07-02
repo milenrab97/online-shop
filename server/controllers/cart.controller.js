@@ -51,4 +51,21 @@ router.post('/:userId/cart', (req, res) => {
         })
 })
 
+router.delete('/:userId/cart/:productId', (req, res) => {
+    const { userId, productId } = req.params
+
+    Cart.deleteMany({ userId, productId: ObjectId(productId) }, (err, doc) => {
+        if (!err) {
+            res.status(204).json({
+                success: true,
+            })
+        } else {
+            res.status(err.status || 500).json({
+                success: false,
+                error: err.message,
+            })
+        }
+    })
+})
+
 module.exports = router

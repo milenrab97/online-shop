@@ -1,4 +1,4 @@
-import { ADD_TO_CART, FETCH_CART, SET_CART } from '../constants/cart'
+import { ADD_TO_CART, FETCH_CART, SET_CART, DELETE_PRODUCT_FROM_CART } from '../constants/cart'
 
 export const addToCartAction = ({ productId }) => ({
     type: ADD_TO_CART,
@@ -13,4 +13,9 @@ export const fetchCartAction = () => ({
 export const setCartAction = ({ cart }) => ({
     type: SET_CART,
     payload: { cart },
+})
+
+export const deleteProductFromCartAction = ({ productId }) => ({
+    type: DELETE_PRODUCT_FROM_CART,
+    payload: { productId },
 })

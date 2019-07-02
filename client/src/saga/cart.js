@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import jwtDecode from 'jwt-decode'
 import { call, takeLatest, all, put } from 'redux-saga/effects'
-import { FETCH_CART, ADD_TO_CART } from '../constants/cart'
+import { FETCH_CART, ADD_TO_CART, DELETE_PRODUCT_FROM_CART } from '../constants/cart'
 import { setCartAction, fetchCartAction } from '../actions/cart'
 import http from './../services/request'
 
@@ -57,6 +57,26 @@ export function* fetchCartWatcher() {
     yield takeLatest(FETCH_CART, fetchCartWorker)
 }
 
+export const deleteProductFromCartAsync = productId => {
+    const userId = getUserId()
+
+    return http.delete(`/api/users/${userId}/cart/${productId}`)
+}
+
+export function* deleteProductFromCartWorker(action) {
+    try {
+        yield call(deleteProductFromCartAsync, action.payload.productId)
+
+        yield put(fetchCartAction())
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export function* deleteProductFromCartWatcher() {
+    yield takeLatest(DELETE_PRODUCT_FROM_CART, deleteProductFromCartWorker)
+}
+
 export function* cartSaga() {
-    yield all([call(fetchCartWatcher), call(addToCartWatcher)])
+    yield all([call(fetchCartWatcher), call(addToCartWatcher), call(deleteProductFromCartWatcher)])
 }
