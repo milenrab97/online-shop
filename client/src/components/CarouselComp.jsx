@@ -26,7 +26,7 @@ export default class CarouselComp extends Component {
                             <img
                                 src={photo}
                                 alt={title}
-                                style={{ position: 'relative ', width: '520px', height: '350px' }}
+                                style={{ position: 'relative ', width: '700px', height: '490px', paddingTop: '2px' }}
                             />
                             <Carousel.Caption>
                                 <div>
