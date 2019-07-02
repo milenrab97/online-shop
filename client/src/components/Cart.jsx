@@ -23,7 +23,7 @@ export class Cart extends Component {
 
         return (
             <div>
-                <Container style={{ padding: '15px' }}>
+                <Container style={{ padding: '15px', display: 'flex', justifyContent: 'center' }}>
                     <Row>
                         <Col>
                             <div>

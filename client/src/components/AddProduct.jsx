@@ -60,7 +60,7 @@ class AddProduct extends Component {
 
     render() {
         return (
-            <div style={{ width: '400px', marginLeft: '30px' }}>
+            <div style={{ width: '400px', margin: '30px auto', backgroundColor: '#F8F9FA', padding: '15px' }}>
                 <Form>
                     <Form.Group controlId="formTitle">
                         <Form.Label>Title</Form.Label>

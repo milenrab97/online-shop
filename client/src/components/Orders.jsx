@@ -4,8 +4,14 @@ import { ListGroup, Button } from 'react-bootstrap'
 export default class Orders extends Component {
     render() {
         return (
-            <div>
+            <div style={{ width: '60%', margin: '30px auto', backgroundColor: '#F8F9FA', padding: '15px' }}>
                 {[
+                    {
+                        name: 'Pesho',
+                        products: ['pishka', 'pishka2'],
+                        status: 'pending',
+                        time: '10 chasa',
+                    },
                     {
                         name: 'Pesho',
                         products: ['pishka', 'pishka2'],
