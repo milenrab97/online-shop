@@ -31,13 +31,22 @@ export class Cart extends Component {
                                     return (
                                         <Card style={{ width: '20rem' }} block>
                                             <Card.Header> Title : {product.title}</Card.Header>
-                                            <Card.Text>Price : {product.price}</Card.Text>
-                                            <p
-                                                style={{ color: 'red' }}
-                                                onClick={() => deleteProductFromCart({ productId: product._id })}
+                                            <Card.Text
+                                                style={{
+                                                    display: 'flex',
+                                                    justifyContent: 'space-between',
+                                                    margin: '10px',
+                                                }}
                                             >
-                                                x
-                                            </p>
+                                                Price : {product.price}
+                                                <Button
+                                                    style={{ marginLeft: '10px' }}
+                                                    variant="danger"
+                                                    onClick={() => deleteProductFromCart({ productId: product._id })}
+                                                >
+                                                    X
+                                                </Button>
+                                            </Card.Text>
                                         </Card>
                                     )
                                 })}

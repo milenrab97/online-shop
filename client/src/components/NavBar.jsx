@@ -55,9 +55,11 @@ export class NavBar extends Component {
                     </Nav>
 
                     <Form inline>
-                        <Navbar.Text>
-                            <Link to="/cart">Cart</Link>
-                        </Navbar.Text>
+                        {userRole && (
+                            <Navbar.Text style={{ marginRight: '10px' }}>
+                                <Link to="/cart">Cart</Link>
+                            </Navbar.Text>
+                        )}
                         <FormControl
                             type="text"
                             placeholder="Enter category"

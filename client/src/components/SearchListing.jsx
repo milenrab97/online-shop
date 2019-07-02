@@ -14,6 +14,10 @@ export class SearchListing extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.fetchProducts()
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.match.params.id !== this.props.match.params.id) {
             this.setState({

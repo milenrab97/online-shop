@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Button, Card, Container, Row, Dropdown } from 'react-bootstrap'
 import { productsSelector } from '../reducers/products'
 import { fetchCartAction, addToCartAction } from '../actions/cart'
+import { userRoleSelector } from '../reducers/auth'
 import { fetchProductsAction } from './../actions/products'
 
 export class ProductListing extends Component {
@@ -13,7 +14,7 @@ export class ProductListing extends Component {
     }
 
     render() {
-        const { products, addToCart } = this.props
+        const { products, addToCart, userRole } = this.props
         const normalizedProducts = products.map(product => ({
             ...product,
             photo: `http://localhost:5000/${product.photo.split('\\').join('/')}`,
@@ -28,8 +29,10 @@ export class ProductListing extends Component {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            {['Dildota', 'Vibratori', 'Pedali'].map(category => (
-                                <Dropdown.Item href="#/action-1">{category}</Dropdown.Item>
+                            {['Keyboards', 'Laptops', 'Dogs'].map(category => (
+                                <Dropdown.Item href="#/action-1" key={category}>
+                                    {category}
+                                </Dropdown.Item>
                             ))}
                         </Dropdown.Menu>
                     </Dropdown>
@@ -61,6 +64,7 @@ export class ProductListing extends Component {
                                         <Button
                                             variant="primary"
                                             block
+                                            disabled={!userRole}
                                             onClick={() => addToCart({ productId: product._id })}
                                         >
                                             ADD TO CART
@@ -80,6 +84,7 @@ export class ProductListing extends Component {
 export default connect(
     state => ({
         products: productsSelector(state),
+        userRole: userRoleSelector(state),
     }),
     {
         fetchProducts: fetchProductsAction,
