@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 const jwtDecode = require('jwt-decode')
-const Product = mongoose.model('Product')
 const Comment = mongoose.model('Comment')
 
 router.get('/:productId/comments', (req, res) => {
@@ -13,7 +12,6 @@ router.get('/:productId/comments', (req, res) => {
     })
 })
 
-// TODO: get author from JWT token
 router.post('/:productId/comments', (req, res) => {
     const { description } = req.body
     const token = req.headers.authorization

@@ -1,9 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
-const jwtDecode = require('jwt-decode')
-const Product = mongoose.model('Product')
-const Comment = mongoose.model('Comment')
 const Cart = mongoose.model('Cart')
 ObjectId = require('mongodb').ObjectID
 
