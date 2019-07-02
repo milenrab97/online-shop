@@ -7,6 +7,7 @@ import ProductDetails from './ProductDetails'
 import AddProduct from './AddProduct'
 import Cart from './Cart'
 import SearchListing from './SearchListing'
+import Orders from './Orders'
 
 export default class Shop extends Component {
     render() {
@@ -20,6 +21,7 @@ export default class Shop extends Component {
                 <Route path="/productlisting" component={ProductListing} />
                 <Route path="/add-product" component={AddProduct} />
                 <Route path="/cart" component={Cart} />
+                <Route path="/orders" component={Orders} />
             </div>
         )
     }
