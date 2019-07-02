@@ -36,11 +36,11 @@ export class ProductListing extends Component {
                 </div>
                 <div>
                     <Container style={{ padding: '5px' }}>
-                        <Row>
+                        <Row style={{ display: 'flex', justifyContent: 'center' }}>
                             {/* <Col sm={8}> */}
 
                             {normalizedProducts.map(product => (
-                                <Card style={{ width: '18rem' }} key={product._id}>
+                                <Card style={{ width: '18rem', margin: '0 12px 12px 0' }} key={product._id}>
                                     <Card.Img
                                         style={{
                                             position: 'relative',
@@ -56,6 +56,8 @@ export class ProductListing extends Component {
                                     <Card.Body>
                                         <Card.Title>{product.title}</Card.Title>
                                         <Card.Text>{product.shortDescription}</Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
                                         <Button
                                             variant="primary"
                                             block
@@ -63,7 +65,7 @@ export class ProductListing extends Component {
                                         >
                                             ADD TO CART
                                         </Button>
-                                    </Card.Body>
+                                    </Card.Footer>
                                 </Card>
                             ))}
                             {/* </Col> */}
