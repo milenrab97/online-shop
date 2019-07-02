@@ -1,7 +1,11 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Container, Row, Col, Button, Card } from 'react-bootstrap'
+import { cartSelector } from '../reducers/cart'
+import { fetchCartAction } from '../actions/cart'
 
-export default class Cart extends Component {
+export class Cart extends Component {
     constructor(props) {
         super(props)
 
@@ -10,35 +14,29 @@ export default class Cart extends Component {
         }
     }
 
-    renderCart = () => {
-        let test = [
-            {
-                name: 'test',
-                price: 12391,
-            },
-            {
-                name: 'kur',
-                price: 1031320,
-            },
-        ]
-
-        return test.map(product => {
-            return (
-                <Card style={{ width: '20rem' }} block>
-                    <Card.Header> Name : {product.name}</Card.Header>
-                    <Card.Text>Price : {product.price}</Card.Text>
-                </Card>
-            )
-        })
+    componentDidMount() {
+        this.props.fetchCart()
     }
 
     render() {
+        const { cart } = this.props
+        console.log('cart', cart)
+
         return (
             <div>
                 <Container style={{ padding: '15px' }}>
                     <Row>
                         <Col>
-                            <div>{this.renderCart()}</div>
+                            <div>
+                                {cart.map(product => {
+                                    return (
+                                        <Card style={{ width: '20rem' }} block>
+                                            <Card.Header> Title : {product.title}</Card.Header>
+                                            <Card.Text>Price : {product.price}</Card.Text>
+                                        </Card>
+                                    )
+                                })}
+                            </div>
                             <Button variant="primary" style={{ width: '318px' }} type="submit">
                                 Purchase
                             </Button>
@@ -49,3 +47,12 @@ export default class Cart extends Component {
         )
     }
 }
+
+export default connect(
+    state => ({
+        cart: cartSelector(state),
+    }),
+    {
+        fetchCart: fetchCartAction,
+    }
+)(Cart)

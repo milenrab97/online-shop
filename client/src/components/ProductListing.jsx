@@ -3,15 +3,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Card, Container, Row, Dropdown } from 'react-bootstrap'
 import { productsSelector } from '../reducers/products'
+import { fetchCartAction, addToCartAction } from '../actions/cart'
 import { fetchProductsAction } from './../actions/products'
 
 export class ProductListing extends Component {
     componentDidMount() {
         this.props.fetchProducts()
+        this.props.fetchCart()
     }
 
     render() {
-        const { products } = this.props
+        const { products, addToCart } = this.props
         const normalizedProducts = products.map(product => ({
             ...product,
             photo: `http://localhost:5000/${product.photo.split('\\').join('/')}`,
@@ -54,7 +56,11 @@ export class ProductListing extends Component {
                                     <Card.Body>
                                         <Card.Title>{product.title}</Card.Title>
                                         <Card.Text>{product.shortDescription}</Card.Text>
-                                        <Button variant="primary" block>
+                                        <Button
+                                            variant="primary"
+                                            block
+                                            onClick={() => addToCart({ productId: product._id })}
+                                        >
                                             ADD TO CART
                                         </Button>
                                     </Card.Body>
@@ -75,5 +81,7 @@ export default connect(
     }),
     {
         fetchProducts: fetchProductsAction,
+        fetchCart: fetchCartAction,
+        addToCart: addToCartAction,
     }
 )(ProductListing)
