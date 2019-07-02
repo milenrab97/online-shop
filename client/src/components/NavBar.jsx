@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Button, Navbar, Nav, FormControl } from 'react-bootstrap'
+import { logoutAction } from '../actions/auth'
+import { userRoleSelector } from '../reducers/auth'
 
-export default class NavBar extends Component {
+export class NavBar extends Component {
     constructor(props) {
         super(props)
 
@@ -19,6 +22,8 @@ export default class NavBar extends Component {
     }
 
     render() {
+        const { userRole, logout } = this.props
+
         return (
             <Navbar bg="light" expand="lg">
                 <Navbar.Brand>
@@ -29,9 +34,11 @@ export default class NavBar extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto nav-spacing">
-                        <Navbar.Text>
-                            <Link to="/login">Login</Link>
-                        </Navbar.Text>
+                        {!userRole && (
+                            <Navbar.Text>
+                                <Link to="/login">Login</Link>
+                            </Navbar.Text>
+                        )}
                         <Navbar.Text>
                             <Link to="/productlisting">Products</Link>
                         </Navbar.Text>
@@ -54,12 +61,23 @@ export default class NavBar extends Component {
                                 Search
                             </Button>
                         </Link>
-                        <Button variant="danger" style={{ marginLeft: '10px' }}>
-                            Logout
-                        </Button>
+                        {userRole && (
+                            <Button variant="danger" style={{ marginLeft: '10px' }} onClick={logout}>
+                                Logout
+                            </Button>
+                        )}
                     </Form>
                 </Navbar.Collapse>
             </Navbar>
         )
     }
 }
+
+export default connect(
+    state => ({
+        userRole: userRoleSelector(state),
+    }),
+    {
+        logout: logoutAction,
+    }
+)(NavBar)
