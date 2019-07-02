@@ -5,6 +5,7 @@ import { Col, Row, Container, Image, Card, Button } from 'react-bootstrap'
 import { productSelector, commentsSelector } from '../reducers/products'
 import Comments from './Comments'
 import { fetchProductDetailsAction, submitCommentAction } from './../actions/products'
+import { addToCartAction } from '../actions/cart'
 
 export class ProductDetails extends PureComponent {
     componentDidMount() {
@@ -19,7 +20,7 @@ export class ProductDetails extends PureComponent {
     }
 
     render() {
-        const { product, comments, submitComment } = this.props
+        const { product, comments, submitComment, addToCart } = this.props
 
         const photo = product.photo ? `http://localhost:5000/${product.photo.split('\\').join('/')}` : null
 
@@ -43,7 +44,7 @@ export class ProductDetails extends PureComponent {
                             </Card.Body>
                             <Card.Footer>
                                 <Card.Text>Price : {product.price} lv</Card.Text>
-                                <Button variant="primary" block>
+                                <Button variant="primary" block onClick={() => addToCart({ productId: product._id })}>
                                     Add to Cart
                                 </Button>
                             </Card.Footer>
@@ -68,5 +69,6 @@ export default connect(
     {
         fetchProductDetails: fetchProductDetailsAction,
         submitComment: submitCommentAction,
+        addToCart: addToCartAction,
     }
 )(ProductDetails)
