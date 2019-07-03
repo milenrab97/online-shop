@@ -5,7 +5,7 @@ const Order = mongoose.model('Order')
 ObjectId = require('mongodb').ObjectID
 
 router.get('/:userId/orders', (req, res) => {
-    Order.find({ userId: req.params.userId }, (err, docs) => {
+    Order.find({ status: 'pending' }, (err, docs) => {
         if (!err) {
             res.json(docs)
         }

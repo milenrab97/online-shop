@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Container, Row, Col, Button, Card } from 'react-bootstrap'
 import { cartSelector } from '../reducers/cart'
 import { fetchCartAction, deleteProductFromCartAction } from '../actions/cart'
+import { purchaseAction } from '../actions/orders'
 
 export class Cart extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ export class Cart extends Component {
     }
 
     render() {
-        const { cart, deleteProductFromCart } = this.props
+        const { cart, deleteProductFromCart, purchase } = this.props
 
         return (
             <div>
@@ -51,7 +52,15 @@ export class Cart extends Component {
                                     )
                                 })}
                             </div>
-                            <Button variant="primary" style={{ width: '318px' }} type="submit">
+                            <Button
+                                variant="primary"
+                                style={{ width: '318px' }}
+                                onClick={() => {
+                                    const products = cart.map(({ _id }) => _id)
+
+                                    purchase({ products })
+                                }}
+                            >
                                 Purchase
                             </Button>
                         </Col>
@@ -69,5 +78,6 @@ export default connect(
     {
         fetchCart: fetchCartAction,
         deleteProductFromCart: deleteProductFromCartAction,
+        purchase: purchaseAction,
     }
 )(Cart)

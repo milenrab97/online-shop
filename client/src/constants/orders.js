@@ -1,0 +1,5 @@
+export const PURCHASE = 'PURCHASE'
+export const APPROVE_ORDER = 'APPROVE_ORDER'
+export const DECLINE_ORDER = 'DECLINE_ORDER'
+export const FETCH_ORDERS = 'FETCH_ORDERS'
+export const SET_ORDERS = 'SET_ORDERS'

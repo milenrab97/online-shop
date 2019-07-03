@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
@@ -31,6 +32,7 @@ class Login extends Component {
 
         event.preventDefault()
         this.props.login({ username, password })
+        this.props.history.push(`/`)
     }
 
     render() {
